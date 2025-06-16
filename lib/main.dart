@@ -45,6 +45,7 @@ class LapStoreApp extends StatelessWidget {
       routes: {
         '/login': (context) => const AuthScreen(),
         '/home': (context) => HomeScreen(),
+        '/profile': (context) => const ProfileScreen(),
       },
     );
   }
