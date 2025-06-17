@@ -1,108 +1,105 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'cartscreen.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-class HPScreen extends StatelessWidget {
-  // No featured section—just list HP models as in ShopScreen
-  final List<Map<String, String>> allHP = [
-    {
-      'title': 'HP Spectre x360',
-      'subtitle': 'Versatile 2-in-1 for creators.',
-      'price': 'From \$1199',
-      'image': 'assets/images/hp_spectre.jpg'
-    },
-    {
-      'title': 'HP Omen 16',
-      'subtitle': 'Built for high performance gaming.',
-      'price': 'From \$1399',
-      'image': 'assets/images/hp_omen.jpg'
-    },
-    {
-      'title': 'HP Pavilion',
-      'subtitle': 'Affordable, reliable.',
-      'price': 'From \$799',
-      'image': 'assets/images/hp_pavilion.jpg'
-    },
-    {
-      'title': 'HP Envy',
-      'subtitle': 'Stylish and powerful.',
-      'price': 'From \$1099',
-      'image': 'assets/images/hp_envy.jpg'
-    },
-  ];
+class HpScreen extends StatelessWidget {
+  const HpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = GoogleFonts.inter();
-
+    final textStyle = const TextStyle(fontFamily: 'Inter');
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('HP Laptops', style: textStyle.copyWith(color: Colors.white)),
         backgroundColor: Colors.black,
-        iconTheme: IconThemeData(color: Colors.white),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.shopping_cart, color: Colors.white),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) => CartScreen()));
-            },
-          ),
-        ],
+        title: const Text("HP", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,)),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('HP Models', style: textStyle.copyWith(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-              SizedBox(height: 12),
-              Column(
-                children: allHP.map((hp) {
-                  return Container(
-                    margin: EdgeInsets.only(bottom: 16),
-                    padding: EdgeInsets.all(12),
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
-                    child: Row(
-                      children: [
-                        Image.asset(hp['image']!, width: 80, height: 80, fit: BoxFit.cover),
-                        SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(hp['title']!, style: textStyle.copyWith(fontSize: 16, fontWeight: FontWeight.bold)),
-                              if (hp['subtitle'] != null)
-                                Text(hp['subtitle']!, style: textStyle.copyWith(fontSize: 13, color: Colors.grey[800])),
-                              Text(hp['price']!, style: textStyle.copyWith(fontSize: 14, color: Colors.black, fontWeight: FontWeight.bold)),
-                              SizedBox(height: 6),
-                              Row(
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Cart.add(hp);
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                          SnackBar(content: Text("${hp['title']} added to cart!")));
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.black,
-                                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
-                                    child: Text('Buy', style: textStyle.copyWith(color: Colors.white)),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              'assets/banners/hpuu.jpg',
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+            20.heightBox,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Power to perform, freedom to move.",
+                      style: textStyle.copyWith(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold)),
+                  8.heightBox,
+                  Text(
+                    "HP laptops combine performance with style, ideal for work and play.",
+                    style: textStyle.copyWith(color: Colors.white70, fontSize: 14),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            28.heightBox,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text("Exclusive Deals",
+                  style: textStyle.copyWith(
+                      color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+            ),
+            12.heightBox,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  _dealCard("HP Back to School Offer", "Save up to 20% on select models."),
+                  12.heightBox,
+                  _dealCard("Free Mouse & Bag", "On every laptop purchase."),
+                ],
+              ),
+            ),
+            36.heightBox,
+            Center(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  shape: const StadiumBorder(),
+                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/shop', arguments: {'brand': 'HP'});
+                },
+                child: const Text("Browse All HP Products",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+            ),
+            40.heightBox,
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _dealCard(String title, String subtitle) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[900],
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: const TextStyle(
+                  color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 4),
+          Text(subtitle, style: const TextStyle(color: Colors.white70)),
+        ],
       ),
     );
   }

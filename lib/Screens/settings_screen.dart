@@ -38,8 +38,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           value: isDark,
           onChanged: (val) {
             setState(() => isDark = val);
-            // You should propagate this change to the whole app!
-            // e.g., via Provider, setState at root, or similar.
+            
           },
         ),
       ),

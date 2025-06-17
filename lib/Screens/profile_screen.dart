@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'cartscreen.dart';
 import 'settings_screen.dart';
-import 'authscreen.dart'; // Add your auth screen import
-
+import 'authscreen.dart'; 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
@@ -18,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: VStack([
-        // 👤 Avatar and Name
+        //  Avatar and Name
         Column(
           children: [
             CircleAvatar(
@@ -34,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
 
         30.heightBox,
 
-        // 🛒 Cart
+        //  Cart
         _profileTile(
           icon: Icons.shopping_cart,
           title: "Cart",
@@ -46,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
           },
         ),
 
-        // ⚙️ Settings
+        // Settings
         _profileTile(
           icon: Icons.settings,
           title: "Settings",
@@ -63,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
           icon: Icons.logout,
           title: "Logout",
           onTap: () {
-            // You may want to clear local user data here
+            
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (_) => AuthScreen()),

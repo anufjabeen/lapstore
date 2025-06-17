@@ -35,17 +35,24 @@ class _HomeScreenState extends State<HomeScreen> {
       'image': 'assets/banners/macbookair.jpeg'
     },
     {
+      'title': 'Dell XPS',
+      'subtitle': 'Sleek performance for professionals.',
+      'price': 'From \$1099',
+      'image': 'assets/banners/dellxps.png'
+    },
+    {
       'title': 'ASUS ROG',
       'subtitle': 'Performance beast for gamers.',
       'price': 'From \$1299',
       'image': 'assets/banners/asusrog.jpg'
     },
     {
-      'title': 'Dell XPS',
-      'subtitle': 'Sleek performance for professionals.',
-      'price': 'From \$1099',
-      'image': 'assets/banners/dellxps.png'
+      'title': 'HP Spectre x360',
+      'subtitle': 'Versitile 2 in 1 for creator',
+      'price': 'From \$1199',
+      'image': 'assets/banners/hpp.jpg'
     },
+  
   ];
 
   void _onNavBarTapped(int index) {
@@ -54,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
         context,
         MaterialPageRoute(builder: (_) => ShopScreen()),
       );
-      // Don't change _selectedIndex for shop, since it's a new route.
       return;
     }
     if (index == 2) {
@@ -62,7 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
         context,
         MaterialPageRoute(builder: (_) => ProfileScreen()),
       );
-      // Don't change _selectedIndex for profile, since it's a new route.
       return;
     }
     setState(() {
@@ -83,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(5.0),
           child: Image.asset('assets/banners/applogo.png'),
         ),
+        centerTitle: true,
         title: Text(
           "LapStore",
           style: textStyle.copyWith(
@@ -93,6 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
+            iconSize: 32,
             icon: const Icon(Icons.shopping_cart, color: Colors.white),
             onPressed: () {
               Navigator.push(
@@ -106,7 +113,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 30),  
-          // horizontal 16, vertical 10 , height 200
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -162,10 +168,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(context, MaterialPageRoute(builder: (_) => DellScreen()));
                               break;
                             case 'HP':
-                              Navigator.push(context, MaterialPageRoute(builder: (_) => HPScreen()));
+                              Navigator.push(context, MaterialPageRoute(builder: (_) => HpScreen()));
                               break;
                             case 'ASUS':
-                              Navigator.push(context, MaterialPageRoute(builder: (_) => Asusscreen()));
+                              Navigator.push(context, MaterialPageRoute(builder: (_) => AsusScreen()));
                               break;
                           }
                         },
@@ -217,10 +223,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Navigator.push(context, MaterialPageRoute(builder: (_) => DellScreen()));
                                         break;
                                       case 'HP':
-                                        Navigator.push(context, MaterialPageRoute(builder: (_) => HPScreen()));
+                                        Navigator.push(context, MaterialPageRoute(builder: (_) => HpScreen()));
                                         break;
                                       case 'ASUS':
-                                        Navigator.push(context, MaterialPageRoute(builder: (_) => Asusscreen()));
+                                        Navigator.push(context, MaterialPageRoute(builder: (_) => AsusScreen()));
                                         break;
                                     }
                                   },
@@ -319,7 +325,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              // No Buy button here per your instruction
                               
                               const Spacer(),
                             ],

@@ -1,165 +1,121 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'cartscreen.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MacScreen extends StatelessWidget {
-  // Featured product matches Home/Shop
-  final List<Map<String, String>> featuredMacs = [
-    {
-      'title': 'MacBook Air',
-      'subtitle': 'Supercharged by the M3 chip. Built for Apple Intelligence.°',
-      'price': 'From \$999',
-      'image': 'assets/banners/macbookair.jpeg'
-    },
-  ];
-
-  // All Apple laptops as per ShopScreen
-  final List<Map<String, String>> allMacs = [
-    {
-      'title': 'MacBook Air M4',
-      'subtitle': 'Supercharged by the M4 chip. Built for Apple Intelligence',
-      'price': 'From \$1099',
-      'image': 'assets/banners/apple/MacBook Air M4.jpg'
-    },
-    {
-      'title': 'MacBook Pro M2',
-      'subtitle': 'Ultimate pro performance.',
-      'price': 'From \$1999',
-      'image': 'assets/banners/apple/MacBook Air M4.jpg'
-    },
-    {
-      'title': 'MacBook Pro 14',
-      'subtitle': 'Proven Apple power.',
-      'price': 'From \$999',
-      'image': 'assets/banners/apple/MacBook Pro 14 (M3 Pro).jpg'
-    },
-    {
-      'title': 'MacBook Pro M1',
-      'subtitle': 'For creative professionals.',
-      'price': 'From \$1799',
-      'image': 'assets/banners/apple/MacBook Air M1 (2020).png'
-    },
-  ];
+  const MacScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = GoogleFonts.inter();
+    final textStyle = const TextStyle(fontFamily: 'Inter');
 
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Apple Laptops', style: textStyle.copyWith(color: Colors.white)),
         backgroundColor: Colors.black,
-        iconTheme: IconThemeData(color: Colors.white),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.shopping_cart, color: Colors.white),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) => CartScreen()));
-            },
-          ),
-        ],
+        title: const Text("Apple", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,)),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Featured Apple Laptop', style: textStyle.copyWith(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-              SizedBox(height: 10),
-              SizedBox(
-                height: 220,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: featuredMacs.length,
-                  itemBuilder: (context, index) {
-                    final mac = featuredMacs[index];
-                    return Container(
-                      width: 260,
-                      margin: EdgeInsets.only(right: 12),
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(mac['image']!, height: 120, fit: BoxFit.contain),
-                          SizedBox(height: 8),
-                          Text(mac['title']!, style: textStyle.copyWith(fontWeight: FontWeight.bold, fontSize: 16)),
-                          if (mac['subtitle'] != null)
-                            Text(mac['subtitle']!, style: textStyle.copyWith(fontSize: 12, color: Colors.grey[700])),
-                          Text(mac['price']!, style: textStyle.copyWith(color: Colors.grey[700])),
-                          const Spacer(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              OutlinedButton(
-                                onPressed: () {
-                                  Cart.add(mac);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text("${mac['title']} added to cart!")));
-                                },
-                                style: OutlinedButton.styleFrom(
-                                    foregroundColor: Colors.black,
-                                    side: BorderSide(color: Colors.black)),
-                                child: Text('Buy', style: textStyle),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(height: 24),
-              Text('All Apple Models', style: textStyle.copyWith(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-              SizedBox(height: 12),
-              Column(
-                children: allMacs.map((mac) {
-                  return Container(
-                    margin: EdgeInsets.only(bottom: 16),
-                    padding: EdgeInsets.all(12),
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
-                    child: Row(
-                      children: [
-                        Image.asset(mac['image']!, width: 80, height: 80, fit: BoxFit.cover),
-                        SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(mac['title']!, style: textStyle.copyWith(fontSize: 16, fontWeight: FontWeight.bold)),
-                              if (mac['subtitle'] != null)
-                                Text(mac['subtitle']!, style: textStyle.copyWith(fontSize: 13, color: Colors.grey[800])),
-                              Text(mac['price']!, style: textStyle.copyWith(fontSize: 14, color: Colors.black, fontWeight: FontWeight.bold)),
-                              SizedBox(height: 6),
-                              Row(
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Cart.add(mac);
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                          SnackBar(content: Text("${mac['title']} added to cart!")));
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.black,
-                                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
-                                    child: Text('Buy', style: textStyle.copyWith(color: Colors.white)),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              'assets/banners/apple/MacBook Air M4.jpg',
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+
+            20.heightBox,
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Supercharged by the M3 chip.",
+                    style: textStyle.copyWith(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                }).toList(),
+                  ),
+                  8.heightBox,
+                  Text(
+                    "Experience next-level performance and battery life. Designed for creativity, power, and Apple Intelligence.",
+                    style: textStyle.copyWith(
+                      color: Colors.white70,
+                      fontSize: 14,
+                      height: 1.6,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+
+            28.heightBox,
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text("Exclusive Deals",
+                  style: textStyle.copyWith(
+                      color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+            ),
+            12.heightBox,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  _dealCard("Apple Student Offer", "Save up to 15% on MacBook."),
+                  12.heightBox,
+                  _dealCard("Warranty Bonus", "3-Year Warranty on MacBook Pro."),
+                ],
+              ),
+            ),
+
+            36.heightBox,
+
+            Center(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  shape: const StadiumBorder(),
+                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/shop', arguments: {'brand': 'Apple'});
+                },
+                child: const Text("Browse All Apple Products",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+            ),
+
+            40.heightBox,
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _dealCard(String title, String subtitle) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[900],
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: const TextStyle(
+                  color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 6),
+          Text(subtitle, style: const TextStyle(color: Colors.white70)),
+        ],
       ),
     );
   }

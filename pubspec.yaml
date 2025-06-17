@@ -88,15 +88,11 @@ flutter:
     - assets/banners/dellxps.png
     - assets/banners/logo2.jpg
     - assets/banners/applogo.png
-    # - assets/banners/apple/MacBook Air M4.jpg
-    # - assets/banners/apple/MacBook Air M4.jpg
-    # - assets/banners/apple/MacBook Pro 14 (M3 Pro).jpg
-    # - assets/banners/apple/MacBook Air M1 (2020).png
-    # - assets/banners/asus/asus rog zephyrus.jpeg
-    # - assets/banners/asus/asus tuf.jpg
-    # - assets/banners/asus/asus rog vivobook.jpg
-    # - assets/banners/asus/asus zenbook.jpg
-
+    - assets/banners/hpp.jpg
+    - assets/banners/apple/MacBook Air M4.jpg
+    - assets/banners/hpuu.jpg
+    - assets/banners/dellu.png
+    - assets/banners/asusu.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

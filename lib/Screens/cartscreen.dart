@@ -25,7 +25,7 @@ class CartScreen extends StatelessWidget {
     // Calculate total
     double total = 0;
     for (final p in cartProducts) {
-      // Try to extract number from price like "From $1099"
+      
       final priceString = p['price'] ?? "";
       final match = RegExp(r'(\d+)').firstMatch(priceString);
       if (match != null) {
@@ -36,7 +36,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Your Cart", style: textStyle.copyWith(color: Colors.white)),
+        title: Text("Your Cart", style: textStyle.copyWith(color: Colors.white,fontWeight: FontWeight.bold,)),
         backgroundColor: Colors.black,
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
@@ -72,7 +72,7 @@ class CartScreen extends StatelessWidget {
                         child: Row(
                           children: [
                             if (product['image'] != null)
-                              Image.asset(
+                              Image.network(
                                 product['image']!,
                                 width: 60,
                                 height: 60,

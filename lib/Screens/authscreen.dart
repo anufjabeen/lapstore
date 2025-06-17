@@ -36,7 +36,7 @@ class _AuthScreenState extends State<AuthScreen> {
         userCredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
 
-        // Navigate to HomeScreen
+       
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -54,7 +54,7 @@ class _AuthScreenState extends State<AuthScreen> {
         userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
 
-        // Switch to login mode with a friendly nudge!
+        
         setState(() {
           isLogin = true;
           emailController.clear();
@@ -94,17 +94,17 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // fallback color
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              'assets/banners/logo.jpg', // Change path as needed
+              'assets/banners/logo.jpg',
               fit: BoxFit.cover,
             ),
           ),
-          // Overlay for readability
+         
           Positioned.fill(
             child: Container(
               color: Colors.black.withOpacity(0.55),
